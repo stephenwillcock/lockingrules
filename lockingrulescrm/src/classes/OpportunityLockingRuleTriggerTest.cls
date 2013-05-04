@@ -26,9 +26,10 @@
 @IsTest
 private class OpportunityLockingRuleTriggerTest
 {
-	@IsTest(SeeAllData=true)
+    @IsTest(SeeAllData=true)
     private static void LockingRuleTest()
     {
+        // Temporary test for code coverage purposes only
         Opportunity opp = [select Id from Opportunity limit 1];
         update opp;
     }
