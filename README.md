@@ -1,4 +1,4 @@
 LockingRules
 ============
 
-Details coming soon to foobarforce.com
+See: http://foobarforce.com/2013/05/04/lockingrules/
