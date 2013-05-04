@@ -1,0 +1,40 @@
+<apex:page standardController="LockingRule__c" extensions="LockingRuleController">
+	<apex:sectionHeader title="{!$ObjectType.LockingRule__c.Label} Edit" subtitle="{!LockingRule__c.Name}"/><!-- TODO label -->
+	<apex:pageMessages />
+	<apex:form >
+		<apex:pageBlock title="{!$ObjectType.LockingRule__c.Label} Edit" ><!-- TODO label -->
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!save}" value="Save"/><!-- TODO label -->
+				<apex:commandButton action="{!cancel}" value="Cancel"/><!-- TODO label -->
+			</apex:pageBlockButtons>
+			<apex:outputPanel id="selectStateFieldPanel">
+				<apex:pageBlockSection collapsible="false" columns="1">
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="State field"/><!-- TODO label -->
+						<apex:selectList value="{!LockingRule__c.StateFieldName__c}" size="1" disabled="{!StateFieldSelectDisabled}">
+							<apex:actionSupport event="onchange" action="{!initialiseLockingRules}" rerender="selectStateFieldPanel,fieldLocksPanel"/>	
+	            			<apex:selectOptions value="{!StateFieldSelectOptions}"/>
+	        			</apex:selectList>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel />
+						<apex:commandButton action="{!detailReset}" value="Reset"/><!-- TODO label -->
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+			<apex:outputPanel id="fieldLocksPanel">
+				<apex:pageBlockSection collapsible="false" columns="1" rendered="{!RenderFieldLocks}">
+					<apex:pageBlockTable value="{!detailViewstate.FieldLockingViews}" var="fieldLockingView">
+						<apex:column headerValue="Field Label" value="{!fieldLockingView.label}"/><!-- TODO label -->
+						<apex:column headerValue="Field Name" value="{!fieldLockingView.name}"/><!-- TODO label --> 
+						<apex:repeat value="{!stateFieldValues}" var="stateFieldValue">
+							<apex:column headerValue="{!selectedStateFieldLabel + ': ' + stateFieldValue}">
+								<apex:inputCheckbox value="{!fieldLockingView.lockByState[stateFieldValue]}"/>
+							</apex:column>
+						</apex:repeat> 
+					</apex:pageBlockTable>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

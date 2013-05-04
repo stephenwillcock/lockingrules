@@ -1,0 +1,20 @@
+<apex:page standardController="LockingRule__c" extensions="LockingRuleController">
+	<apex:sectionHeader title="{!$ObjectType.LockingRule__c.Label} Edit" subtitle="New {!$ObjectType.LockingRule__c.Label}"/><!-- TODO label -->
+	<apex:pageMessages />
+	<apex:form >
+		<apex:pageBlock title="{!$ObjectType.LockingRule__c.Label} Edit" ><!-- TODO label -->
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!toEditFromNew}" value="Continue"/><!-- TODO label --><!-- TODO is this an appropriate action name? -->
+				<apex:commandButton action="{!cancel}" value="Cancel"/><!-- RODO label -->
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection collapsible="false" columns="1">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="New Locking Rule for:"/><!-- TODO label -->
+					<apex:selectList value="{!LockingRule__c.ObjectAPIName__c}" size="1">
+            			<apex:selectOptions value="{!SobjectSelectOptions}"/>
+        			</apex:selectList>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

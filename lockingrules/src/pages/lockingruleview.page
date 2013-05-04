@@ -1,0 +1,20 @@
+<apex:page standardController="LockingRule__c" extensions="LockingRuleController">
+	<apex:sectionHeader title="{!$ObjectType.LockingRule__c.Label}" subtitle="{!LockingRule__c.Name}"/>
+	<apex:pageMessages />
+	<apex:detail relatedList="false" title="false"/>
+	<apex:form >
+		<apex:pageBlock ><!-- TODO label -->
+			<apex:pageBlockSection collapsible="false" columns="1" rendered="{!RenderFieldLocks}">
+				<apex:pageBlockTable value="{!detailViewstate.FieldLockingViews}" var="fieldLockingView">
+					<apex:column headerValue="Field Label" value="{!fieldLockingView.label}"/><!-- TODO label -->
+					<apex:column headerValue="Field Name" value="{!fieldLockingView.name}"/><!-- TODO label --> 
+					<apex:repeat value="{!stateFieldValues}" var="stateFieldValue">
+						<apex:column headerValue="{!selectedStateFieldLabel + ': ' + stateFieldValue}">
+							<apex:inputCheckbox disabled="true" value="{!fieldLockingView.lockByState[stateFieldValue]}"/>
+						</apex:column>
+					</apex:repeat> 
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
